@@ -77,7 +77,7 @@ type TextVariants =
 export const $fontSizes: Record<TextVariants, TextStyle> = {
   headingLarge: {
     fontSize: 32,
-    lineHeight: 28.4,
+    lineHeight: 38.4,
   },
   headingMedium: {
     fontSize: 22,
