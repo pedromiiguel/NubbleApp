@@ -6,10 +6,17 @@ import {SignUpScreen} from '../screens/auth/SignUpScreen/SignUpScreen';
 
 const Stack = createNativeStackNavigator();
 export function Router() {
-  <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-    </Stack.Navigator>
-  </NavigationContainer>;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          fullScreenGestureEnabled: true,
+        }}
+        initialRouteName="LoginScreen">
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
