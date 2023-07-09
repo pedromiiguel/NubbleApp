@@ -46,6 +46,7 @@ export function TextInput({
         </Text>
         <Box {...$textInputContainer} flexDirection="row">
           <RNTextInput
+            autoCapitalize="none"
             ref={inputRef}
             style={$textInputStyle}
             {...rnTextInputProps}
