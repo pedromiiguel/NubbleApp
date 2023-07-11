@@ -1,20 +1,34 @@
 import React from 'react';
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
-import {Button} from '../../../components/Button/Button';
-import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
+import {zodResolver} from '@hookform/resolvers/zod';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../routes/routes';
 import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
+import {useForm} from 'react-hook-form';
+import {FormTextInput} from '../../../components/Form/FormTextInput';
+import {FormPasswordInput} from '../../../components/Form/FormPasswordInput';
+import {SignUpSchema, signUpSchema} from './signUpSchema';
+import {Screen} from '../../../components/Screen/Screen';
+import {Text} from '../../../components/Text/Text';
+import {Button} from '../../../components/Button/Button';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function SignUpScreen({navigation}: ScreenProps) {
   const {reset} = useResetNavigationSuccess();
+  const {control, handleSubmit, formState} = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      username: '',
+      fullName: '',
+      email: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
 
-  function submitForm() {
+  function submitForm(values: SignUpSchema) {
+    console.log(values);
     reset({
       title: 'Sua conta foi criada com sucesso!',
       description: 'Agora é só fazer login na nossa plataforma',
@@ -31,25 +45,43 @@ export function SignUpScreen({navigation}: ScreenProps) {
         Criar uma conta
       </Text>
 
-      <TextInput label="Seu username" placeholder="@" boxProps={{mb: 's20'}} />
-      <TextInput
+      <FormTextInput
+        name="username"
+        control={control}
+        label="Seu username"
+        placeholder="@"
+        boxProps={{mb: 's20'}}
+      />
+
+      <FormTextInput
+        name="fullName"
+        control={control}
         label="Nome completo"
         placeholder="Digite seu nome"
         boxProps={{mb: 's20'}}
       />
-      <TextInput
+
+      <FormTextInput
+        name="email"
+        control={control}
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{mb: 's20'}}
       />
 
-      <PasswordInput
+      <FormPasswordInput
+        name="password"
+        control={control}
         label="Senha"
         placeholder="Digite sua senha"
         boxProps={{mb: 's48'}}
       />
 
-      <Button title="Criar minha conta" onPress={submitForm} />
+      <Button
+        title="Criar minha conta"
+        onPress={handleSubmit(submitForm)}
+        disabled={!formState.isValid}
+      />
     </Screen>
   );
 }
