@@ -29,7 +29,11 @@ export function AppTabNavigator() {
   }
 
   return (
-    <Tab.Navigator tabBar={renderTabBar}>
+    <Tab.Navigator
+      tabBar={renderTabBar}
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="NewPostScreen" component={NewPostScreen} />
       <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
