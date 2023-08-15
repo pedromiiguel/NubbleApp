@@ -39,7 +39,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         }
         refreshing={loading}
         data={postList}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         ListHeaderComponent={<HomeHeader />}
       />
