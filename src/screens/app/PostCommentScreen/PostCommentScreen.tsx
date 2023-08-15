@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
-import {PostComment, usePostCommentList} from '@domain';
+import {PostComment, usePostCommentList, useUser} from '@domain';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Box, Screen} from '@components';
@@ -21,14 +21,23 @@ type ScreenProps = NativeStackScreenProps<
 
 export function PostCommentScreen({route}: ScreenProps) {
   const postId = route.params.postId;
+  const postAuthorId = route.params.postAuthorId;
 
   const {bottom} = useAppSafeArea();
+  const {id} = useUser();
 
   const {list, fetchNextPage, hasNextPage, refresh} =
     usePostCommentList(postId);
 
   function renderItem({item}: ListRenderItemInfo<PostComment>) {
-    return <PostCommentItem postComment={item} />;
+    return (
+      <PostCommentItem
+        postAuthorId={postAuthorId}
+        userId={id}
+        onRemoveComment={refresh}
+        postComment={item}
+      />
+    );
   }
 
   return (
