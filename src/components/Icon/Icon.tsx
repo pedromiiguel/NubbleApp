@@ -1,6 +1,8 @@
 import React from 'react';
 import {Pressable} from 'react-native';
 
+import {ErrorRounderIcon} from 'src/assets/icons/ErrorRounderIcon';
+
 import {ArrowLeftIcon} from '../../assets/icons/ArrowLeftIcon';
 import {ArrowRightIcon} from '../../assets/icons/ArrowRightIcon';
 import {BellIcon} from '../../assets/icons/BellIcon';
@@ -77,6 +79,7 @@ const iconRegistry = {
   chatOn: ChatOnIcon,
   check: CheckIcon,
   checkRound: CheckRoundIcon,
+  errorRound: ErrorRounderIcon,
   comment: CommentIcon,
   chevronRight: ChevronRightIcon,
   eyeOn: EyeOnIcon,
