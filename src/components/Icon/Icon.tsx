@@ -1,8 +1,6 @@
 import React from 'react';
 import {Pressable} from 'react-native';
 
-import {ErrorRounderIcon} from 'src/assets/icons/ErrorRounderIcon';
-
 import {ArrowLeftIcon} from '../../assets/icons/ArrowLeftIcon';
 import {ArrowRightIcon} from '../../assets/icons/ArrowRightIcon';
 import {BellIcon} from '../../assets/icons/BellIcon';
@@ -16,6 +14,7 @@ import {CheckIcon} from '../../assets/icons/CheckIcon';
 import {CheckRoundIcon} from '../../assets/icons/checkRoundIcon';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon';
 import {CommentIcon} from '../../assets/icons/CommentIcon';
+import {ErrorRounderIcon} from '../../assets/icons/ErrorRounderIcon';
 import {EyeOffIcon} from '../../assets/icons/EyeOffIcon';
 import {EyeOnIcon} from '../../assets/icons/EyeOnIcon';
 import {FlashOffIcon} from '../../assets/icons/FlashOffIcon';
