@@ -26,15 +26,14 @@ export function PostCommentScreen({route}: ScreenProps) {
   const {bottom} = useAppSafeArea();
   const {id} = useUser();
 
-  const {list, fetchNextPage, hasNextPage, refresh} =
-    usePostCommentList(postId);
+  const {list, fetchNextPage, hasNextPage} = usePostCommentList(postId);
 
   function renderItem({item}: ListRenderItemInfo<PostComment>) {
     return (
       <PostCommentItem
+        postId={postId}
         postAuthorId={postAuthorId}
         userId={id}
-        onRemoveComment={refresh}
         postComment={item}
       />
     );
@@ -56,7 +55,7 @@ export function PostCommentScreen({route}: ScreenProps) {
             />
           }
         />
-        <PostCommentTextMessage postId={postId} onAddComment={refresh} />
+        <PostCommentTextMessage postId={postId} />
       </Box>
     </Screen>
   );
