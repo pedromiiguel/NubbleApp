@@ -21,11 +21,9 @@ export function usePaginatedList<Data>(
   const query = useInfiniteQuery({
     queryKey,
     queryFn: ({pageParam = 1}) => {
-      console.log({pageParam});
       return getList(pageParam);
     },
     getNextPageParam: ({meta}) => {
-      console.log({meta});
       return meta.hasNextPage ? meta.currentPage + 1 : null;
     },
   });
