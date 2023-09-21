@@ -1,7 +1,9 @@
 import React from 'react';
 import {View} from 'react-native';
 
+import {useAuthSignIn, authService} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {useAuthCredentials, useToastService} from '@services';
 import {useForm} from 'react-hook-form';
 
 import {
@@ -16,6 +18,16 @@ import {AuthScreenProps} from '@routes';
 import {LoginSchema, loginSchema} from './LoginSchema';
 
 export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
+  const {showToast} = useToastService();
+  const {saveCredentials} = useAuthCredentials();
+  const {isLoading, signIn} = useAuthSignIn({
+    onError: message => showToast({message, type: 'error'}),
+    onSuccess: authCredentials => {
+      authService.updateToken(authCredentials.token);
+      saveCredentials(authCredentials);
+    },
+  });
+
   const {control, handleSubmit, formState} = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -33,8 +45,8 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
     navigation.navigate('ForgotPasswordScreen');
   }
 
-  function submitForm(values: LoginSchema) {
-    console.log(values);
+  function submitForm({email, password}: LoginSchema) {
+    signIn({email, password});
   }
 
   return (
@@ -76,6 +88,7 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
           mt="s48"
           onPress={handleSubmit(submitForm)}
           disabled={!formState.isValid}
+          loading={isLoading}
         />
         <Button
           title="Criar uma conta"
