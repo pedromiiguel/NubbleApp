@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import {useAuthSignIn, authService} from '@domain';
+import {useAuthSignIn} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useAuthCredentials, useToastService} from '@services';
 import {useForm} from 'react-hook-form';
@@ -23,7 +23,6 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
   const {isLoading, signIn} = useAuthSignIn({
     onError: message => showToast({message, type: 'error'}),
     onSuccess: authCredentials => {
-      authService.updateToken(authCredentials.token);
       saveCredentials(authCredentials);
     },
   });
