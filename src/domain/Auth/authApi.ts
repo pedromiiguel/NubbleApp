@@ -5,6 +5,7 @@ import {UserAPI} from '../User';
 import {
   AuthCredentialsAPI,
   FieldIsAvailableAPI,
+  ForgotPasswordParam,
   SignUpDataAPI,
 } from './authTypes';
 
@@ -29,7 +30,7 @@ async function signUp(data: SignUpDataAPI): Promise<UserAPI> {
 async function isUserNameAvailable(params: {
   username: string;
 }): Promise<FieldIsAvailableAPI> {
-  const response = await api.get<FieldIsAvailableAPI>('validate-username', {
+  const response = await api.get<FieldIsAvailableAPI>('/validate-username', {
     params,
   });
 
@@ -39,9 +40,20 @@ async function isUserNameAvailable(params: {
 async function isEmailAvailable(params: {
   email: string;
 }): Promise<FieldIsAvailableAPI> {
-  const response = await api.get<FieldIsAvailableAPI>('validate-email', {
+  const response = await api.get<FieldIsAvailableAPI>('/validate-email', {
     params,
   });
+
+  return response.data;
+}
+
+async function forgotPassword(
+  params: ForgotPasswordParam,
+): Promise<{message: string}> {
+  const response = await api.post<{message: string}>(
+    '/forgot-password',
+    params,
+  );
 
   return response.data;
 }
@@ -52,4 +64,5 @@ export const authApi = {
   signUp,
   isUserNameAvailable,
   isEmailAvailable,
+  forgotPassword,
 };

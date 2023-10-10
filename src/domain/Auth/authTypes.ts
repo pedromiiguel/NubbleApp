@@ -1,5 +1,8 @@
 import {User, UserAPI} from '../User';
 
+export interface ForgotPasswordParam {
+  email: string;
+}
 export interface AuthCredentials {
   token: string;
   user: User;
