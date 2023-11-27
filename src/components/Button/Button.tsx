@@ -1,6 +1,6 @@
 import React from 'react';
-import {ActivityIndicator} from 'react-native';
 
+import {ActivityIndicator} from '../ActivityIndicator/ActivityIndicator';
 import {TouchableOpacityBox, TouchableOpacityBoxProps} from '../Box/Box';
 import {Text} from '../Text/Text';
 
@@ -8,7 +8,7 @@ import {buttonPresets} from './buttonPreset';
 
 export type ButtonPreset = 'primary' | 'outline';
 
-interface ButtonProps extends TouchableOpacityBoxProps {
+export interface ButtonProps extends TouchableOpacityBoxProps {
   title: string;
   loading?: boolean;
   preset?: ButtonPreset;
@@ -26,6 +26,7 @@ export function Button({
 
   return (
     <TouchableOpacityBox
+      testID="button"
       disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
