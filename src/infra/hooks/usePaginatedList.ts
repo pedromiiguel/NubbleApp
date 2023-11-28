@@ -24,7 +24,7 @@ export function usePaginatedList<Data>(
       return getList(pageParam);
     },
     getNextPageParam: ({meta}) => {
-      return meta.hasNextPage ? meta.currentPage + 1 : null;
+      return meta.hasNextPage ? meta.currentPage + 1 : undefined;
     },
   });
   useEffect(() => {
