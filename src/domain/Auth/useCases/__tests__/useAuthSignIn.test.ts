@@ -1,5 +1,4 @@
-import {renderHook} from '@testing-library/react-native';
-import {AllTheProviders, waitFor} from 'test-utils';
+import {renderHook, waitFor} from 'test-utils';
 
 import {authService} from '../../authService';
 import {useAuthSignIn} from '../useAuthSignIn';
@@ -13,11 +12,8 @@ describe('useAuthSignIn', () => {
       .spyOn(authService, 'signIn')
       .mockResolvedValueOnce(mockedAuthCredentials);
 
-    const {result} = renderHook(
-      () => useAuthSignIn({onSuccess: mockedOnSuccess}),
-      {
-        wrapper: AllTheProviders,
-      },
+    const {result} = renderHook(() =>
+      useAuthSignIn({onSuccess: mockedOnSuccess}),
     );
 
     result.current.signIn({email: 'pedro@email.com', password: '123456'});
@@ -32,9 +28,7 @@ describe('useAuthSignIn', () => {
 
     const mockedOnError = jest.fn();
 
-    const {result} = renderHook(() => useAuthSignIn({onError: mockedOnError}), {
-      wrapper: AllTheProviders,
-    });
+    const {result} = renderHook(() => useAuthSignIn({onError: mockedOnError}));
 
     result.current.signIn({email: 'pedro@email.com', password: '123456'});
 
