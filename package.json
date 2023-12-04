@@ -10,7 +10,8 @@
     "test": "jest --verbose",
     "coverage": "jest --verbose --coverage",
     "prepare": "husky install",
-    "art:3333": "adb reverse tcp:3333 tcp:3333"
+    "art:3333": "adb reverse tcp:3333 tcp:3333",
+    "pre-commit": "yarn lint && yarn tsc --noEmit && yarn test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
