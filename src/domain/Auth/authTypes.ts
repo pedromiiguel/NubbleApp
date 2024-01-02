@@ -6,6 +6,8 @@ export interface ForgotPasswordParam {
 export interface AuthCredentials {
   token: string;
   user: User;
+  refreshToken: string;
+  tokenExpiresAt: string;
 }
 
 export interface FieldIsAvailableAPI {
@@ -17,6 +19,8 @@ export interface AuthCredentialsAPI {
   auth: {
     type: string; //'bearer';
     token: string; // 'NA.GCfDf81QRs0q4VxyFSEvWs8kZ-DoZnl5zKLn8UDY8ntedjZCPgxVxfFijlQy';
+    refreshToken: string;
+    expires_at: string;
   };
   user: UserAPI;
 }
