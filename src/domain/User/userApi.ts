@@ -1,15 +1,26 @@
-import {api} from '@api';
+import {PageAPI, api} from '@api';
 
 import {UserAPI} from './userTypes';
 
 const PATH = 'users';
 
 async function getById(userId: number): Promise<UserAPI> {
-  const response = await api.get(`/${PATH}/${userId}`);
+  const response = await api.get<UserAPI>(`/${PATH}/${userId}`);
+
+  return response.data;
+}
+
+async function getList(search: string): Promise<PageAPI<UserAPI>> {
+  const response = await api.get<PageAPI<UserAPI>>(`/${PATH}`, {
+    params: {
+      search,
+    },
+  });
 
   return response.data;
 }
 
 export const userApi = {
   getById,
+  getList,
 };
