@@ -12,6 +12,10 @@ const ICON_SIZE = 20;
 export function ScreenHeader({canGoBack, title, HeaderComponent}: Props) {
   const navigation = useNavigation();
 
+  if (!title && !canGoBack && !HeaderComponent) {
+    return null;
+  }
+
   const showBackLabel = !title && !HeaderComponent;
 
   return (
