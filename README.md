@@ -3,6 +3,7 @@
 </h1>
 
 <p align="center">
+  <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar-o-projeto">Como executar</a>&nbsp;&nbsp;&nbsp;
 </p>
@@ -22,6 +23,10 @@
 </p>
 
 <br/>
+
+## 🔖 Sobre
+
+Nubble App é um aplicativo desenvolvido com React Native, com funcionalidades semelhantes às do Instagram, permitindo aos usuários compartilhar suas fotos e interagir com amigos. O projeto tem como objetivo principal aprimorar o conhecimento em testes unitários, testes de integração e o processo de publicação do aplicativo nas lojas de aplicativos
 
 ## 🚀 Tecnologias
 
