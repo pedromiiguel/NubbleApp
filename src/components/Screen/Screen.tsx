@@ -14,6 +14,7 @@ export interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   scrollable?: boolean;
   title?: string;
+  noPaddingHorizontal?: boolean;
 }
 
 export function Screen({
@@ -21,6 +22,7 @@ export function Screen({
   HeaderComponent,
   canGoBack = false,
   scrollable = false,
+  noPaddingHorizontal = false,
   title,
   style,
   ...boxProps
@@ -36,10 +38,11 @@ export function Screen({
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
         <Box
-          paddingHorizontal="s24"
+          paddingHorizontal={noPaddingHorizontal ? undefined : 's24'}
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           {...boxProps}>
           <ScreenHeader
+            paddingHorizontal={noPaddingHorizontal ? 's24' : undefined}
             HeaderComponent={HeaderComponent}
             canGoBack={canGoBack}
             title={title}
