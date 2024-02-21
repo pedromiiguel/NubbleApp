@@ -1,4 +1,4 @@
-import {Post, PostAPI} from './postType';
+import {Post, PostAPI} from './postTypes';
 
 function toPost(postAPI: PostAPI): Post {
   return {
