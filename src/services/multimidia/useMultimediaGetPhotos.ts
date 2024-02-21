@@ -3,19 +3,17 @@ import {useEffect, useState} from 'react';
 import {QueryKeys} from '@infra';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
-import {CameraRollService} from './cameraRollService';
+import {multimidiaService} from './multimidiaService';
 
-export function useCameraRoll(
+export function useMultimediaGetPhotos(
   hasPermission: boolean,
   onInitiallLoad?: (imageUrl: string) => void,
 ) {
-  const [list, setList] = useState<string[]>([
-    'file:///storage/emulated/0/DCIM/Camera/IMG_20240131_172706.jpg',
-  ]);
+  const [list, setList] = useState<string[]>([]);
 
   const query = useInfiniteQuery({
     queryKey: [QueryKeys.CameraRollList],
-    queryFn: ({pageParam}) => CameraRollService.getPhotos(pageParam),
+    queryFn: ({pageParam}) => multimidiaService.getPhotos(pageParam),
     getNextPageParam: ({cursor}) => cursor,
     enabled: hasPermission,
   });
