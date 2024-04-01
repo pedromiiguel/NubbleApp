@@ -1,7 +1,7 @@
 export type ImageForUpload = {
   uri: string;
   name: string;
-  type: 'image/png' | 'image/jpg';
+  type: 'image/png' | 'image/jpeg';
 };
 
 export type PhotoListPaginated = {
