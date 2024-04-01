@@ -5,6 +5,7 @@ export * from './auth/SuccessScreen/SuccessScreen';
 
 export * from './app/HomeScreen/HomeScreen';
 export * from './app/SettingsScreen/SettingsScreen';
+export * from './app/DarkModeScreen/DarkModeScreen';
 export * from './app/SearchScreen/SearchScreen';
 
 export * from './app/PostCommentScreen/PostCommentScreen';
