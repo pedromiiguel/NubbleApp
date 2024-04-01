@@ -34,7 +34,7 @@ export function ScreenHeader({
       {canGoBack && (
         <TouchableOpacityBox
           testID="screen-back-button"
-          mr="s10"
+          mr={showBackLabel ? 's10' : undefined}
           flexDirection="row"
           alignItems="center"
           onPress={navigation.goBack}>
