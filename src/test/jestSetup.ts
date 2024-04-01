@@ -46,4 +46,8 @@ jest.mock('expo-image-manipulator', () => ({
   manipulateAsync: jest.fn(),
 }));
 
+jest.mock('@expo/vector-icons/Ionicons', () => ({
+  Ionicons: jest.fn(),
+}));
+
 initializeStorage(inMemoryStorage);
