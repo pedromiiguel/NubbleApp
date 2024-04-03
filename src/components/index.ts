@@ -16,3 +16,4 @@ export * from './Toast/Toast';
 export * from './Separator/Separator';
 export * from './PermissionManager/PermissionManager';
 export * from './RadioButton';
+export * from './ProgressIndicator/ProgressIndicator';
