@@ -8,7 +8,7 @@ export interface PostReactionBase {
   emojiType: PostReactionType;
   userId: number;
   postId: number;
-  isChecked: true;
+  isChecked: boolean;
   createdAt: string;
   updatedAt: string;
 }
