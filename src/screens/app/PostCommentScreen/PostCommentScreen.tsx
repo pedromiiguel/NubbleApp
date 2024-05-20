@@ -1,11 +1,11 @@
 import React from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
-import {PostComment, usePostCommentList} from '@domain';
+import {PostComment, usePostCommentList, usePostGetById} from '@domain';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useAuthCredentials} from '@services';
 
-import {Box, Screen} from '@components';
+import {Box, PostItem, Screen} from '@components';
 import {useAppSafeArea} from '@hooks';
 import {AppStackParamList} from '@routes';
 
@@ -23,6 +23,9 @@ type ScreenProps = NativeStackScreenProps<
 export function PostCommentScreen({route}: ScreenProps) {
   const postId = route.params.postId;
   const postAuthorId = route.params.postAuthorId;
+  const showPost = route.params.showPost || false;
+
+  const {post} = usePostGetById(postId, showPost);
 
   const {bottom} = useAppSafeArea();
 
@@ -42,7 +45,11 @@ export function PostCommentScreen({route}: ScreenProps) {
   }
 
   return (
-    <Screen flex={1} canGoBack title="Comentários">
+    <Screen
+      flex={1}
+      noPaddingHorizontal
+      canGoBack
+      title={post ? 'Post' : 'Comentários'}>
       <Box flex={1} justifyContent="space-between">
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -50,6 +57,9 @@ export function PostCommentScreen({route}: ScreenProps) {
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
           contentContainerStyle={{paddingBottom: bottom}}
+          ListHeaderComponent={
+            post && <PostItem hideCommentAction post={post} />
+          }
           ListFooterComponent={
             <PostCommentBottom
               fetchNextPage={fetchNextPage}
