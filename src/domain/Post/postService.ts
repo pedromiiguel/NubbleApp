@@ -21,7 +21,14 @@ async function createPost(
   return postAdapter.toPost(postPageAPI);
 }
 
+async function getById(postId: number) {
+  const postApiData = await postApi.getById(postId.toString());
+
+  return postAdapter.toPost(postApiData);
+}
+
 export const postService = {
   getList,
   createPost,
+  getById,
 };
