@@ -15,7 +15,7 @@ import {$fontFamily, $fontSizes, Text} from '../Text/Text';
 export interface TextInputProps extends RNTextInputProps {
   label?: string;
   errorMessage?: string;
-  rightComponent?: React.ReactElement;
+  RightComponent?: React.ReactElement;
   LeftComponent?: React.ReactElement;
   boxProps?: BoxProps;
   containerProps?: BoxProps;
@@ -24,7 +24,7 @@ export interface TextInputProps extends RNTextInputProps {
 export function TextInput({
   label,
   errorMessage,
-  rightComponent,
+  RightComponent,
   LeftComponent,
   boxProps,
   containerProps,
@@ -71,9 +71,9 @@ export function TextInput({
             {...rnTextInputProps}
             placeholderTextColor={colors.gray2}
           />
-          {!!rightComponent && (
+          {!!RightComponent && (
             <Box ml="s16" justifyContent="center">
-              {rightComponent}
+              {RightComponent}
             </Box>
           )}
         </Box>
