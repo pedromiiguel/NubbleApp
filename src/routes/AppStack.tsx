@@ -38,8 +38,12 @@ export type AppStackParamList = {
   EditProfileScreen: {
     userId: number;
   };
-  EditEmailScreen: undefined;
-  EditPasswordScreen: undefined;
+  EditEmailScreen: {
+    userId: number;
+  };
+  EditPasswordScreen: {
+    userId: number;
+  };
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
