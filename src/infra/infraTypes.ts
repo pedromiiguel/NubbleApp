@@ -7,4 +7,5 @@ export enum QueryKeys {
   PostCommentList = 'PostCommentList',
   IsUserNameAvailable = 'IsUserNameAvailable',
   CameraRollList = 'CameraRollList',
+  AsyncValidation = 'AsyncValidation',
 }
