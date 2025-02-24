@@ -14,7 +14,7 @@ jest.mock('@react-navigation/native', () => {
   return {
     ...originalModule,
     useNavigation: () => ({
-      navigate: mockedNavigate,
+      push: mockedNavigate,
     }),
   };
 });
