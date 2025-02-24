@@ -5,6 +5,7 @@ import {PostReaction, postReactionService} from '@domain';
 import {QueryKeys} from '@infra';
 
 import {InfinityScrollList, Screen, Text} from '@components';
+import {useAppNavigation} from '@hooks';
 import {AppTabScreenProps} from '@routes';
 
 const NUM_COLUMNS = 2;
@@ -15,17 +16,16 @@ const ITEM_MARGIN = 16;
 const ITEM_WIDTH =
   (SCREEN_WIDTH - ITEM_MARGIN - SCREEN_PADDING * 2) / NUM_COLUMNS;
 
-export function FavoriteScreen({
-  navigation,
-}: AppTabScreenProps<'FavoriteScreen'>) {
+export function FavoriteScreen({}: AppTabScreenProps<'FavoriteScreen'>) {
+  const navigate = useAppNavigation();
+
   function renderItem({item}: ListRenderItemInfo<PostReaction>) {
     return (
       <Pressable
         onPress={() => {
-          navigation.navigate('PostCommentScreen', {
+          navigate.toPostDetails({
             postId: item.postId,
             postAuthorId: item.author.id,
-            showPost: true,
           });
         }}>
         <Image
@@ -42,7 +42,7 @@ export function FavoriteScreen({
   return (
     <Screen flex={1} title="Favoritos">
       <InfinityScrollList
-        queryKey={QueryKeys.FavoriteList}
+        queryKey={[QueryKeys.FavoriteList]}
         getList={page => postReactionService.getMyReactions('favorite', page)}
         renderItem={renderItem}
         flatListProps={{
