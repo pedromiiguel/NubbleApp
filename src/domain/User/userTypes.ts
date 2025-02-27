@@ -16,6 +16,10 @@ export interface User {
 export interface UserDetails extends User {
   isFollowing: boolean;
 }
+
+export type UpdateUserParams = Partial<
+  Pick<User, 'firstName' | 'lastName' | 'username'>
+>;
 export interface UserAPI {
   id: number; // 1;
   first_name: string; // 'Maria';
