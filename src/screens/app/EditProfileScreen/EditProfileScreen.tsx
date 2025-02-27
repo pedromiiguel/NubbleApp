@@ -18,6 +18,7 @@ export function EditProfileScreen({
   const formRef = useRef<EditProfileRef>(null);
 
   const [formIsValid, setFormIsValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function submitForm() {
     //TODO:
@@ -32,6 +33,7 @@ export function EditProfileScreen({
           ref={formRef}
           user={user}
           onChangeIsValid={setFormIsValid}
+          onChangeIsLoading={setIsLoading}
         />
       )}
 
@@ -64,6 +66,7 @@ export function EditProfileScreen({
         title="Salvar Alterações"
         onPress={submitForm}
         disabled={!formIsValid}
+        loading={isLoading}
       />
     </Screen>
   );
