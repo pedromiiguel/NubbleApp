@@ -45,6 +45,7 @@ export function ProfileHeader({
           followersCount={userDetails.meta.followersCount}
           followingCount={userDetails.meta.followingCount}
           publicationCount={publicationCount}
+          isMyProfile={isMyProfile}
         />
 
         {isMyProfile ? (
